@@ -2,13 +2,14 @@ package com.hristoforov.elective.utils;
 
 import com.hristoforov.elective.entities.Course;
 import com.hristoforov.elective.entities.Role;
+import com.hristoforov.elective.entities.Topic;
 import com.hristoforov.elective.entities.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class WorkWithEntityFromDb {
-    public static  User createUserFromDb(ResultSet resultSet) throws SQLException {
+    public static User createUserFromDb(ResultSet resultSet) throws SQLException {
         return new User(resultSet.getLong("user_id"),
                 resultSet.getString("last_name"),
                 resultSet.getString("first_name"),
@@ -26,5 +27,10 @@ public class WorkWithEntityFromDb {
                 resultSet.getDate("end_date"),
                 createUserFromDb(resultSet)
         );
+    }
+
+    public static Topic createTopicFromDb(ResultSet resultSet) throws SQLException {
+        return new Topic(resultSet.getLong("id"),
+                resultSet.getString("topic_title"));
     }
 }

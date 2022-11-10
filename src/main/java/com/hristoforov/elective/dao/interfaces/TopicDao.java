@@ -19,4 +19,6 @@ public interface TopicDao extends Dao<Topic> {
 
     @Override
     Topic findById(Long id);
+
+    Topic findByTitle(String title);
 }

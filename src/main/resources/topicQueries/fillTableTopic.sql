@@ -1,0 +1,1 @@
+insert into topic (topic_title) values (?)
