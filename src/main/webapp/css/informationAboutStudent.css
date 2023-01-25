@@ -1,0 +1,49 @@
+ul {
+    list-style-type: none;
+}
+
+#nutri-header {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+#nutri-footer {
+    text-align: left;
+    padding: 2em 0;
+    margin-top: 30px;
+}
+.col {
+    padding-right: 1em;
+    padding-left: 1em;
+}
+@media (min-width: 769px) {
+    .row {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+/* =================================
+  Media Queries
+==================================== */
+
+@media (min-width: 769px) {
+    .row{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .main-header {
+        flex-direction: row;
+        align-text: center;
+    }
+    .col {
+        flex: 1;
+
+    }
+    .row {
+        flex: 1;
+        align-items: flex-start;
+    }
+}

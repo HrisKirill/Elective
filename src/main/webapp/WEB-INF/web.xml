@@ -3,4 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <welcome-file-list>
+        <welcome-file>/loginPage/loginPage.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- error-code related error pages -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/Error</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/Error</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/Error</location>
+    </error-page>
 </web-app>

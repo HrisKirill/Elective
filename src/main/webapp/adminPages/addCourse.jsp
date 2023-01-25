@@ -1,0 +1,72 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: khrystoforov-k
+  Date: 03.02.22
+  Time: 17:42
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<fmt:setBundle basename="resources"/>
+<fmt:setLocale value="${sessionScope.locale}" scope="session"/>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/addAndEdit.css">
+    <link rel="stylesheet" type="text/css" href="../css/editMark.css">
+</head>
+<body>
+<jsp:include page="/locale/locale.jsp"/>
+
+<form action="${pageContext.request.contextPath}/Admin/AddCourse" method="POST">
+    <div class="container">
+        <h1><fmt:message key="add"/></h1>
+        <hr>
+        <label for="title"><b><fmt:message key="course.title"/></b>
+            <tags:notEmptyError value="${titleSpellingError}"/>
+            <tags:notEmptyError value="${titleExistsError}"/></label>
+        <input type="text" name="title" id="title" value="${incorrectCourseTitle}" required>
+
+        <div>
+            <label for="duration"><b><fmt:message key="course.duration"/></b>
+                <tags:notEmptyError value="${durationSpellingError}"/>
+            </label>
+            <input type="number" name="duration" id="duration"
+                   min="0" step="15" value="${incorrectCourseDuration}" required>
+            <span class="validity"></span>
+        </div>
+
+        <div>
+            <label for="startDate"><b><fmt:message key="course.startDate"/></b>
+                <tags:notEmptyError value="${startDateSpellingError}"/>
+            </label>
+            <input type="date" name="startDate" id="startDate"
+                   min="${currentDate}" value="${incorrectCourseStartDate}" required>
+        </div>
+        <div>
+            <label for="endDate"><b><fmt:message key="course.endDate"/></b>
+                <tags:notEmptyError value="${endDateSpellingError}"/>
+                <tags:notEmptyError value="${endDateBeforeStartError}"/>
+            </label>
+            <input type="date" name="endDate" id="endDate"
+                   min="${currentDate}" value="${incorrectCourseEndDate}" required>
+        </div>
+        <div>
+            <label for="topics"><b><fmt:message key="topic"/></b></label>
+            <select name="topics" id="topics">
+                <option value="None"><fmt:message key="choose"/></option>
+                <c:forEach var="topic" items="${topicList}">
+                    <option value="${topic.getId()}">${topic.getTitle()}</option>
+                </c:forEach>
+            </select>
+        </div>
+
+        <button type="reset" class="registerbtn" onclick="document.location='/Admin/TableOfCourses'">
+            <fmt:message key="go.back"/></button>
+        <button type="submit" class="registerbtn"><fmt:message key="add"/></button>
+    </div>
+
+</form>
+</body>
+</html>

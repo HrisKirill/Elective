@@ -1,24 +1,51 @@
 package com.hristoforov.elective.dao.interfaces;
 
-import com.hristoforov.elective.entities.Topic;
+import com.hristoforov.elective.entities.course.Course;
+import com.hristoforov.elective.entities.topic.Topic;
+import com.hristoforov.elective.exceptions.DataBaseInteractionException;
 
 import java.util.List;
 
+/**
+ * TopicDao interface with all operations
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public interface TopicDao extends Dao<Topic> {
-    @Override
-    void create(Topic entity);
 
-    @Override
-    void update(Topic entity);
+    /**
+     * Find topic by title
+     *
+     * @param title - topic title
+     * @return topic with this title
+     * @throws DataBaseInteractionException
+     */
+    Topic findByTitle(String title) throws DataBaseInteractionException;
 
-    @Override
-    void remove(Topic entity);
+    /**
+     * Find topic by course id
+     *
+     * @param courseId - course id
+     * @return topic
+     * @throws DataBaseInteractionException
+     */
+    List<Topic> findTopicsByCourse(Long courseId) throws DataBaseInteractionException;
 
-    @Override
-    List<Topic> findAll();
+    /**
+     * Find all topics that not include course with this id
+     *
+     * @param courseId - course id
+     * @return list of topics
+     */
+    List<Topic> topicsThatDoNotIncludeTheCourse(Long courseId);
 
-    @Override
-    Topic findById(Long id);
-
-    Topic findByTitle(String title);
+    /**
+     * Insert into table 'courses_topics' this pair
+     *
+     * @param topic  - topic
+     * @param course - course
+     * @throws DataBaseInteractionException
+     */
+    void createTopicCourse(Topic topic, Course course) throws DataBaseInteractionException;
 }

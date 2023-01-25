@@ -1,28 +1,89 @@
 package com.hristoforov.elective.dao.interfaces;
 
-import com.hristoforov.elective.entities.User;
+import com.hristoforov.elective.entities.course.Course;
+import com.hristoforov.elective.entities.user.User;
+import com.hristoforov.elective.exceptions.DataBaseInteractionException;
 
 import java.util.List;
+import java.util.Map;
 
+/**
+ * UserDao interface with all operations
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public interface UserDao extends Dao<User> {
-    @Override
-    void create(User entity);
 
-    @Override
-    void update(User entity);
+    /**
+     * Insert into table 'users_courses'
+     *
+     * @param user   - user
+     * @param course - course
+     * @param mark   - user's mark by this course
+     * @throws DataBaseInteractionException
+     */
+    void createUserCourse(User user, Course course, int mark) throws DataBaseInteractionException;
 
-    @Override
-    void remove(User entity);
+    /**
+     * Update values in table 'users_courses'
+     *
+     * @param user   - user
+     * @param course - course
+     * @param mark   - user's mark by this course
+     * @throws DataBaseInteractionException
+     */
+    void updateUserCourse(User user, Course course, int mark) throws DataBaseInteractionException;
 
-    @Override
-    List<User> findAll();
+    /**
+     * Find user by login
+     *
+     * @param login - user login
+     * @return user
+     * @throws DataBaseInteractionException
+     */
+    User findByLogin(String login) throws DataBaseInteractionException;
 
-    @Override
-    User findById(Long id);
+    /**
+     * Find by email
+     *
+     * @param email - user email
+     * @return user
+     * @throws DataBaseInteractionException
+     */
+    User findByEmail(String email) throws DataBaseInteractionException;
 
+    /**
+     * Find all students by course id
+     *
+     * @param courseId - course id
+     * @return map of user and user's mark
+     * @throws DataBaseInteractionException
+     */
+    Map<User, Integer> findAllStudentsByCourseId(Long courseId) throws DataBaseInteractionException;
 
-    User findByLogin(String login);
+    /**
+     * Find all teachers
+     *
+     * @return list of teachers
+     */
+    List<User> findAllTeachers();
 
+    /**
+     * Find all students
+     *
+     * @return list of students
+     */
+    List<User> findAllStudents();
 
-    User findByEmail(String email);
+    /**
+     * Find teachers ot students or all with offset
+     *
+     * @param offset         - offset
+     * @param recordsPerPage - records on page
+     * @param filePath       - path to file
+     * @return list of users
+     * @throws DataBaseInteractionException
+     */
+    List<User> findTeachersOrStudentsOrAllWithOffset(int offset, int recordsPerPage, String filePath) throws DataBaseInteractionException;
 }

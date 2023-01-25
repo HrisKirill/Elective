@@ -1,0 +1,13 @@
+CREATE TABLE user (
+    id INT NOT NULL AUTO_INCREMENT,
+    last_name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    login VARCHAR(45) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    role VARCHAR(45) NOT NULL,
+    status VARCHAR(45) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE INDEX login_UNIQUE (login ASC) VISIBLE,
+    UNIQUE INDEX email_UNIQUE (email ASC) VISIBLE
+);

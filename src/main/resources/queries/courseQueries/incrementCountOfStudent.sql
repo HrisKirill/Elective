@@ -1,0 +1,1 @@
+update course set count_of_student = count_of_student + 1 where id = ?
