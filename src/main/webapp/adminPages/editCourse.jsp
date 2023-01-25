@@ -29,16 +29,18 @@
                value="${editCourse.getTitle()}" readonly>
 
         <div>
-            <label for="duration"><b><fmt:message key="course.duration"/></b> <tags:notEmptyError value="${durationSpellingError}"/>
-                <%--${errorDuration}--%></label>
+            <label for="duration"><b><fmt:message key="course.duration"/></b>
+                <tags:notEmptyError value="${durationSpellingError}"/>
+                </label>
             <input type="number" name="duration" id="duration"
                    min="0" step="15" value="${editCourse.getDuration()}" required>
             <span class="validity"></span>
         </div>
 
         <div>
-            <label for="startDate"><b><fmt:message key="course.startDate"/></b> <tags:notEmptyError value="${startDateSpellingError}"/>
-                <%--${errorDate}--%></label>
+            <label for="startDate"><b><fmt:message key="course.startDate"/></b>
+                <tags:notEmptyError value="${startDateSpellingError}"/>
+            </label>
             <c:choose>
                 <c:when test="${currentDate.compareTo(editCourse.getStartDate()) > 0 ||
                 currentDate.compareTo(editCourse.getStartDate()) == 0}">
@@ -54,9 +56,10 @@
             </c:choose>
         </div>
         <div>
-            <label for="endDate"><b><fmt:message key="course.endDate"/></b> <tags:notEmptyError value="${endDateSpellingError}"/>
+            <label for="endDate"><b><fmt:message key="course.endDate"/></b>
+                <tags:notEmptyError value="${endDateSpellingError}"/>
                 <tags:notEmptyError value="${endDateBeforeStartError}"/>
-                <%--${errorDate}--%></label>
+            </label>
             <input type="date" name="endDate" id="endDate"
                    min="${currentDate}"
                    value="${editCourse.getEndDate()}" required>

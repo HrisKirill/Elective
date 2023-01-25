@@ -21,34 +21,42 @@
 <a href="${pageContext.request.contextPath}/Teacher/TableOfCoursesForTeacher"><fmt:message key="go.back"/></a>
 <p style="text-align:right"><a href="${pageContext.request.contextPath}/Logout"> <fmt:message key="sign.out"/> </a></p>
 <form action="${pageContext.request.contextPath}/Teacher/UsersTableForTeacher" method="POST">
-    <table>
-        <tags:caption value="users"/>
-        <thead>
-        <tr>
-            <th scope="col"><fmt:message key="course.title"/></th>
-            <th scope="col"><fmt:message key="user.lastName"/></th>
-            <th scope="col"><fmt:message key="user.firstName"/></th>
-            <th scope="col"><fmt:message key="user.login"/></th>
-            <th scope="col"><fmt:message key="user.email"/></th>
-            <th scope="col"><fmt:message key="course.mark"/></th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="userEntry" items="${userMap.entrySet()}">
-            <tr>
-                <td data-label="<fmt:message key="course.title"/>">${course.getTitle()}</td>
-                <td data-label="<fmt:message key="user.lastName"/>">${userEntry.getKey().getLastName()}</td>
-                <td data-label="<fmt:message key="user.firstName"/>">${userEntry.getKey().getFirstName()}</td>
-                <td data-label="<fmt:message key="user.login"/>">${userEntry.getKey().getLogin()}</td>
-                <td data-label="<fmt:message key="user.email"/>">${userEntry.getKey().getEmail()}</td>
-                <td data-label="<fmt:message key="course.mark"/>">
-                        ${userEntry.getValue()}
-                    <button name="editMark" value="${userEntry.getKey().getId()}"><fmt:message key="edit"/></button>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+    <c:choose>
+        <c:when test="${userMap.size() > 0}">
+            <table>
+                <tags:caption value="users"/>
+                <thead>
+                <tr>
+                    <th scope="col"><fmt:message key="course.title"/></th>
+                    <th scope="col"><fmt:message key="user.lastName"/></th>
+                    <th scope="col"><fmt:message key="user.firstName"/></th>
+                    <th scope="col"><fmt:message key="user.login"/></th>
+                    <th scope="col"><fmt:message key="user.email"/></th>
+                    <th scope="col"><fmt:message key="course.mark"/></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="userEntry" items="${userMap.entrySet()}">
+                    <tr>
+                        <td data-label="<fmt:message key="course.title"/>">${course.getTitle()}</td>
+                        <td data-label="<fmt:message key="user.lastName"/>">${userEntry.getKey().getLastName()}</td>
+                        <td data-label="<fmt:message key="user.firstName"/>">${userEntry.getKey().getFirstName()}</td>
+                        <td data-label="<fmt:message key="user.login"/>">${userEntry.getKey().getLogin()}</td>
+                        <td data-label="<fmt:message key="user.email"/>">${userEntry.getKey().getEmail()}</td>
+                        <td data-label="<fmt:message key="course.mark"/>">
+                                ${userEntry.getValue()}
+                            <button name="editMark" value="${userEntry.getKey().getId()}"><fmt:message
+                                    key="edit"/></button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <h2 style="text-align: center"><fmt:message key="empty.table"/></h2>
+        </c:otherwise>
+    </c:choose>
 </form>
 </body>
 </html>
