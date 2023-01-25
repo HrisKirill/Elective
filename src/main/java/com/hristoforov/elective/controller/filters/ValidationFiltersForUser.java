@@ -116,7 +116,7 @@ public class ValidationFiltersForUser implements Filter {
 
             if (req.getRequestURI().equals(REGISTRATION_SERVLET)) {
                 boolean verify = new VerifyRecaptcha(CaptchaParams.URL,
-                        CaptchaParams.SECRETKEY,
+                        CaptchaParams.SECRET_KEY,
                         CaptchaParams.METHOD,
                         CaptchaParams.ACCEPT_LANGUAGE)
                         .verify(req.getParameter("g-recaptcha-response"));

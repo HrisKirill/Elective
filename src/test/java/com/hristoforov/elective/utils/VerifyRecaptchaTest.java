@@ -17,7 +17,7 @@ class VerifyRecaptchaTest {
     @ValueSource(strings = {"kirill", "7", "qwerty", "true"})
     void testVerifyRecaptcha(String reCaptcha) {
         assertDoesNotThrow(() -> new VerifyRecaptcha(CaptchaParams.URL,
-                CaptchaParams.SECRETKEY,
+                CaptchaParams.SECRET_KEY,
                 CaptchaParams.METHOD,
                 CaptchaParams.ACCEPT_LANGUAGE).verify(reCaptcha));
     }
@@ -26,7 +26,7 @@ class VerifyRecaptchaTest {
     @ValueSource(strings = {"null", ""})
     void testVerifyNull(String reCaptcha) {
         assertDoesNotThrow(() -> new VerifyRecaptcha(CaptchaParams.URL,
-                CaptchaParams.SECRETKEY,
+                CaptchaParams.SECRET_KEY,
                 CaptchaParams.METHOD,
                 CaptchaParams.ACCEPT_LANGUAGE).verify(reCaptcha));
     }
