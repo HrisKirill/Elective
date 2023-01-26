@@ -7,10 +7,8 @@ import com.hristoforov.elective.exceptions.DataBaseInteractionException;
 import com.hristoforov.elective.utils.WorkWithFile;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -339,7 +337,8 @@ public class CourseDaoImpl implements CourseDao {
     public List<Course> coursesInWhichTheStudentDoesNotParticipateWithoutOffset(Long userId) {
         List<Course> allUserCourses = new ArrayList<>(findAllCoursesByUserId(userId).keySet());
         return findAll().stream().filter(one -> !allUserCourses.stream()
-                        .anyMatch(two -> two.getTitle().equals(one.getTitle())))
+                        .anyMatch(two -> two.getTitle().equals(one.getTitle()))
+                        && one.getEndDate().compareTo(Date.valueOf(LocalDate.now())) > 0)
                 .collect(Collectors.toList());
     }
 
