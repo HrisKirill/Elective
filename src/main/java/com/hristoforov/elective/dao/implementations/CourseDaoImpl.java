@@ -460,7 +460,7 @@ public class CourseDaoImpl implements CourseDao {
      * @param offset         - offset
      * @param recordsPerPage - records on page
      * @param fileName       - file name
-     * @return selected list of courses
+     * @return selected map of courses
      * @throws DataBaseInteractionException
      */
     @Override

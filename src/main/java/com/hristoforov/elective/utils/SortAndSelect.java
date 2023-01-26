@@ -9,9 +9,23 @@ import java.util.Map;
 
 import static com.hristoforov.elective.constants.CRA_QueriesFiles.*;
 
+/**
+ * SortAndSelect contains method with sorting and selecting
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public class SortAndSelect {
 
-
+    /**
+     * Sort values in some way
+     *
+     * @param courseDao      course dao
+     * @param sortingWay     way for sorting
+     * @param offset         offset
+     * @param recordsPerPage records in page
+     * @return sorted courses
+     */
     public static List<Course> sortAdminTableBySomeValue(CourseDao courseDao, String sortingWay, int offset, int recordsPerPage) {
         List<Course> courses = new ArrayList<>();
         switch (sortingWay) {
@@ -29,6 +43,16 @@ public class SortAndSelect {
         return courses;
     }
 
+    /**
+     * Select values in some way
+     *
+     * @param courseDao      course dao
+     * @param userId         user id
+     * @param selectWay      selecting way
+     * @param offset         offset
+     * @param recordsPerPage records in page
+     * @return map of selecting courses
+     */
     public static Map<Course, Integer> selectTableBySomeValue(CourseDao courseDao, Long userId, String selectWay, int offset, int recordsPerPage) {
         Map<Course, Integer> resultMap;
         switch (selectWay) {
@@ -52,7 +76,15 @@ public class SortAndSelect {
         return resultMap;
     }
 
-    public static Map<Course, Integer> getSelectingTableWithoutOffset(CourseDao courseDao,Long userId, String selectWay) {
+    /**
+     * Select values in some way with offset
+     *
+     * @param courseDao course dao
+     * @param userId    user id
+     * @param selectWay selecting way
+     * @return map of selecting courses
+     */
+    public static Map<Course, Integer> getSelectingTableWithoutOffset(CourseDao courseDao, Long userId, String selectWay) {
         Map<Course, Integer> resultMap;
         switch (selectWay) {
             case "all":

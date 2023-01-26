@@ -7,6 +7,12 @@ import java.time.LocalDate;
 
 import static com.hristoforov.elective.constants.ValidationConstants.*;
 
+/**
+ * ValidationService with various data validation check
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public class ValidationService {
 
     public static String loginCheck(String login) throws IncorrectDataFormatException {

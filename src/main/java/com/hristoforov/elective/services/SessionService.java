@@ -5,6 +5,12 @@ import javax.servlet.http.HttpSession;
 import static com.hristoforov.elective.constants.HttpAttributes.*;
 import static com.hristoforov.elective.constants.HttpAttributes.INCORRECT_USER_LAST_NAME;
 
+/**
+ * SessionService to get rid of duplicate code
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public class SessionService {
 
     public static void removeErrorFromUserSignUpPage(HttpSession session) {

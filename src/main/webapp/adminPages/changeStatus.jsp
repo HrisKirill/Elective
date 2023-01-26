@@ -15,6 +15,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../css/tableForUser.css">
 </head>
+
 <body>
 <jsp:include page="/locale/locale.jsp"/>
 

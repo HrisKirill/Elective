@@ -19,9 +19,16 @@ import static com.hristoforov.elective.constants.CRAPaths.EDIT_COURSE_SERVLET;
 import static com.hristoforov.elective.constants.ErrorMessage.*;
 import static com.hristoforov.elective.constants.HttpAttributes.*;
 
+/**
+ * ValidationFilterForCourse to validate course data
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 @WebFilter(filterName = "ValidationFilterForCourse", urlPatterns = {EDIT_COURSE_SERVLET, ADD_COURSE_SERVLET})
 public class ValidationFilterForCourse implements Filter {
     private CourseDao courseDao;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         courseDao = AppContext.getAppContext().getCourseDao();
@@ -119,8 +126,8 @@ public class ValidationFilterForCourse implements Filter {
                 httpSession.setAttribute(CORRECT_COURSE, null);
                 httpSession.setAttribute(INCORRECT_COURSE_TITLE, req.getParameter(TITLE));
                 httpSession.setAttribute(INCORRECT_COURSE_DURATION, req.getParameter(DURATION));
-                httpSession.setAttribute(INCORRECT_COURSE_START_DATE,  req.getParameter(START_DATE));
-                httpSession.setAttribute(INCORRECT_COURSE_END_DATE,  req.getParameter(END_DATE));
+                httpSession.setAttribute(INCORRECT_COURSE_START_DATE, req.getParameter(START_DATE));
+                httpSession.setAttribute(INCORRECT_COURSE_END_DATE, req.getParameter(END_DATE));
             }
 
         }

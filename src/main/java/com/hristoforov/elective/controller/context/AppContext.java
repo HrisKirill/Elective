@@ -9,6 +9,12 @@ import lombok.Getter;
 
 import javax.sql.DataSource;
 
+/**
+ * AppContext  class. Contains everything to run the application
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 @Getter
 public class AppContext {
     private static AppContext appContext;

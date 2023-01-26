@@ -6,6 +6,12 @@ import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
 
 
+/**
+ * EncodingFilter to set encoding for any values from view
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 @WebFilter(filterName = "EncodingFilter", urlPatterns = "/*", initParams = {
         @WebInitParam(name = "encoding", value = "UTF-8") })
 public class EncodingFilter implements Filter {

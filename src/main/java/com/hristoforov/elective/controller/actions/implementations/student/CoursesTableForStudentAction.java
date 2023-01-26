@@ -19,6 +19,12 @@ import static com.hristoforov.elective.constants.CRA_JSPFiles.TABLE_FOR_STUDENT_
 import static com.hristoforov.elective.constants.CommonConstants.RECORDS_PER_PAGE;
 import static com.hristoforov.elective.constants.HttpAttributes.*;
 
+/**
+ * Action to show courses for student
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public class CoursesTableForStudentAction implements Action {
     int page;
     private final UserDao userDao;

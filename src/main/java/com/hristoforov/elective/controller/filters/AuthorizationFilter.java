@@ -16,6 +16,14 @@ import java.io.IOException;
 import static com.hristoforov.elective.constants.CRAPaths.*;
 import static com.hristoforov.elective.constants.HttpAttributes.CURRENT_USER;
 
+/**
+ * AuthorizationFilter to check if the user has access to a certain page,
+ * if not, returns to the page with information about the user
+ * if the user is registered, and to the login page if not
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 @WebFilter(filterName = "LoginFilter", urlPatterns = {START_PATH_FOR_ADMIN + "/*", START_PATH_FOR_TEACHER + "/*",
         TABLE_FOR_STUDENT_SERVLET, USER_INFO_PAGE_SERVLET})
 public class AuthorizationFilter implements Filter {

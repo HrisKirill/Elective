@@ -1,7 +1,5 @@
 package com.hristoforov.elective.controller.filters;
 
-import com.hristoforov.elective.constants.CRAPaths;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
@@ -11,6 +9,12 @@ import java.io.IOException;
 
 import static com.hristoforov.elective.constants.HttpAttributes.LOCALE;
 
+/**
+ * LocaleFilter to change locale
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 @WebFilter(filterName = "LocaleFilter", urlPatterns = "/*", initParams = {
         @WebInitParam(name = "defaultLocale", value = "en")})
 public class LocaleFilter implements Filter {
@@ -27,7 +31,7 @@ public class LocaleFilter implements Filter {
         String locale = httpRequest.getParameter(LOCALE);
         if (isNotBlank(locale)) {
             httpRequest.getSession().setAttribute(LOCALE, locale);
-            ((HttpServletResponse) response).sendRedirect((httpRequest).getHeader(REFERER));
+            ((HttpServletResponse) response).sendRedirect(httpRequest.getHeader(REFERER));
         } else {
             String sessionLocale = (String) httpRequest.getSession().getAttribute(LOCALE);
             if (isBlank(sessionLocale)) {

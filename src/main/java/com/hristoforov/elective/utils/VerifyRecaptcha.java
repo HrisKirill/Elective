@@ -1,6 +1,5 @@
 package com.hristoforov.elective.utils;
 
-import com.hristoforov.elective.constants.CaptchaParams;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,8 +13,12 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URL;
 
-import static com.hristoforov.elective.constants.CaptchaParams.ACCEPT_LANGUAGE;
-
+/**
+ * VerifyRecaptcha to verify captcha
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public class VerifyRecaptcha {
     private static final Logger LOGGER = LogManager.getLogger(VerifyRecaptcha.class);
     private final String url;
@@ -31,6 +34,12 @@ public class VerifyRecaptcha {
         this.acceptLanguage = acceptLanguage;
     }
 
+    /**
+     * Verify captcha
+     *
+     * @param gRecaptchaResponse captcha response
+     * @return true if captcha is filled
+     */
     public boolean verify(String gRecaptchaResponse) {
         if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
             return false;

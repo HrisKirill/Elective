@@ -17,6 +17,12 @@ import static com.hristoforov.elective.constants.ErrorMessage.ERROR_SPELLING;
 import static com.hristoforov.elective.constants.ErrorMessage.ERROR_TITLE_EXISTS;
 import static com.hristoforov.elective.constants.HttpAttributes.*;
 
+/**
+ * ValidationFilterForTopic to validate topic data
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 @WebFilter(filterName = "ValidationFilterForTopic", urlPatterns = {ADD_TOPIC_SERVLET})
 public class ValidationFilterForTopic implements Filter {
     private TopicDao topicDao;

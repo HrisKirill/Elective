@@ -19,8 +19,7 @@
 <a href="${pageContext.request.contextPath}/Teacher/UsersTableForTeacher"><fmt:message key="go.back"/></a>
 <form action="${pageContext.request.contextPath}/Teacher/EditMark" method="POST">
     <div>
-        <label for="marks"><fmt:message
-                key="enterMark"/> ${userToEdit.getLastName()} ${userToEdit.getFirstName()}:</label>
+        <label for="marks"><fmt:message key="enterMark"/> ${userToEdit.getLastName()} ${userToEdit.getFirstName()}:</label>
         <input id="marks" type="number" name="marks" min="0" max="100" required>
         <span class="validity"></span>
     </div>

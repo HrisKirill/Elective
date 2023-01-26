@@ -2,37 +2,16 @@ package com.hristoforov.elective.controller.actions.implementations.general;
 
 import com.hristoforov.elective.controller.context.AppContext;
 import com.hristoforov.elective.dao.interfaces.UserDao;
-import com.hristoforov.elective.entities.course.Course;
-import com.hristoforov.elective.entities.enums.Role;
-import com.hristoforov.elective.entities.enums.Status;
-import com.hristoforov.elective.entities.user.User;
-import com.hristoforov.elective.exceptions.AuthenticationException;
-import com.hristoforov.elective.services.authentication.UserAuthenticator;
-import com.hristoforov.elective.utils.PasswordHashingUtil;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Date;
 
-import static com.hristoforov.elective.Constants.*;
-import static com.hristoforov.elective.Constants.getTestUser;
-import static com.hristoforov.elective.constants.CRAPaths.LOGIN_PAGE_SERVLET;
-import static com.hristoforov.elective.constants.CRAPaths.USER_INFO_PAGE_SERVLET;
 import static com.hristoforov.elective.constants.CRA_JSPFiles.LOGIN_PAGE;
-import static com.hristoforov.elective.constants.CommonConstants.SHA_256_ALGORITHM;
-import static com.hristoforov.elective.constants.HttpAttributes.LOGIN;
-import static com.hristoforov.elective.constants.HttpAttributes.PASSWORD;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

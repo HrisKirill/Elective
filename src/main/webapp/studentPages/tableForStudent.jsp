@@ -75,7 +75,7 @@
 
                     <c:forEach begin="1" end="${noOfPages}" var="i">
                         <c:if test="${currentPage eq i}">
-                            <td>${i}</td>
+                            <td>${i} of ${noOfPages} </td>
                         </c:if>
                     </c:forEach>
 

@@ -22,6 +22,12 @@ import java.util.stream.Collectors;
 import static com.hristoforov.elective.constants.CRA_QueriesFiles.*;
 import static com.hristoforov.elective.constants.DBAttributes.*;
 
+/**
+ * User DAO class for db. Match tables 'user' and 'users_courses' in database.
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public class UserDaoImpl implements UserDao {
 
     private final DataSource dataSource;
@@ -30,6 +36,12 @@ public class UserDaoImpl implements UserDao {
         this.dataSource = dataSource;
     }
 
+    /**
+     * Insert user into db
+     *
+     * @param entity - concrete entity
+     * @throws DataBaseInteractionException
+     */
     @Override
     public void create(User entity) throws DataBaseInteractionException {
 
@@ -56,6 +68,14 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Insert into table 'users_courses' this pair
+     *
+     * @param user   - user
+     * @param course - course
+     * @param mark   - user's mark by this course
+     * @throws DataBaseInteractionException
+     */
     @Override
     public void createUserCourse(User user, Course course, int mark) throws DataBaseInteractionException {
         try (Connection conn = dataSource.getConnection();
@@ -78,6 +98,14 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Update user and course pair
+     *
+     * @param user   - user
+     * @param course - course
+     * @param mark   - user's mark by this course
+     * @throws DataBaseInteractionException
+     */
     @Override
     public void updateUserCourse(User user, Course course, int mark) throws DataBaseInteractionException {
         try (Connection conn = dataSource.getConnection();
@@ -100,6 +128,12 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Update user in db
+     *
+     * @param entity -  concrete entity
+     * @throws DataBaseInteractionException
+     */
     @Override
     public void update(User entity) throws DataBaseInteractionException {
         try (Connection conn = dataSource.getConnection();
@@ -128,6 +162,12 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    /**
+     * Remove user from db
+     *
+     * @param id - id of entity
+     * @throws DataBaseInteractionException
+     */
     @Override
     public void remove(Long id) throws DataBaseInteractionException {
         try (Connection conn = dataSource.getConnection();
@@ -148,6 +188,12 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Find all users in db
+     *
+     * @return list of students
+     * @throws DataBaseInteractionException
+     */
     @Override
     public List<User> findAll() throws DataBaseInteractionException {
         List<User> listUser = new ArrayList<>();
@@ -170,6 +216,13 @@ public class UserDaoImpl implements UserDao {
         return listUser;
     }
 
+    /**
+     * Find user by id
+     *
+     * @param id - id of entity
+     * @return user with this id
+     * @throws DataBaseInteractionException
+     */
     @Override
     public User findById(Long id) throws DataBaseInteractionException {
         try (Connection conn = dataSource.getConnection();
@@ -190,6 +243,13 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Find user by login
+     *
+     * @param login - user login
+     * @return user with this login
+     * @throws DataBaseInteractionException
+     */
     @Override
     public User findByLogin(String login) throws DataBaseInteractionException {
         try (Connection conn = dataSource.getConnection();
@@ -210,6 +270,13 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Find user by email
+     *
+     * @param email - user email
+     * @return user with this email
+     * @throws DataBaseInteractionException
+     */
     @Override
     public User findByEmail(String email) throws DataBaseInteractionException {
         try (Connection conn = dataSource.getConnection();
@@ -228,6 +295,13 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Find all students by course id
+     *
+     * @param courseId - course id
+     * @return map of user and  mark
+     * @throws DataBaseInteractionException
+     */
     @Override
     public Map<User, Integer> findAllStudentsByCourseId(Long courseId) throws DataBaseInteractionException {
         Map<User, Integer> map = new HashMap<>();
@@ -250,6 +324,11 @@ public class UserDaoImpl implements UserDao {
         return map;
     }
 
+    /**
+     * Find all teachers
+     *
+     * @return list of teachers
+     */
     @Override
     public List<User> findAllTeachers() {
         return findAll().stream()
@@ -257,6 +336,11 @@ public class UserDaoImpl implements UserDao {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Find all students
+     *
+     * @return list of students
+     */
     @Override
     public List<User> findAllStudents() {
         return findAll().stream()
@@ -264,7 +348,15 @@ public class UserDaoImpl implements UserDao {
                 .collect(Collectors.toList());
     }
 
-
+    /**
+     * Find teachers or students or all with offset
+     *
+     * @param offset         - offset
+     * @param recordsPerPage - records on page
+     * @param filePath       - path to file
+     * @return list of users
+     * @throws DataBaseInteractionException
+     */
     @Override
     public List<User> findTeachersOrStudentsOrAllWithOffset(int offset, int recordsPerPage, String filePath) throws DataBaseInteractionException {
         List<User> list = new ArrayList<>();

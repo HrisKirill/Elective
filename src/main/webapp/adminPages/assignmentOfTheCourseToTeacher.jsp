@@ -12,19 +12,22 @@
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 
 <html>
+<title>
+    Assigment a course for teacher
+</title>
 <body>
 <jsp:include page="/locale/locale.jsp"/>
 
 <form action="${pageContext.request.contextPath}/Admin/AssignmentOfTheCourse" method="POST">
     <p><a href="${pageContext.request.contextPath}/Admin/TableOfTeachers"><fmt:message key="go.back"/></a></p>
-    <label for="editCourseForTeacher"><b><fmt:message key="course"/></b> </label>
+    <label for="editCourseForTeacher"><b><fmt:message key="assigment.course"/></b> </label>
     <select name="editCourseForTeacher" id="editCourseForTeacher" required>
         <option value="None" selected><fmt:message key="choose"/></option>
         <c:forEach var="course" items="${coursesWithoutTeachersList}">
             <option value="${course.getId()}">${course.getTitle()}</option>
         </c:forEach>
     </select>
-    <button type="submit" ><fmt:message key="submit"/></button>
+    <button type="submit"><fmt:message key="submit"/></button>
 </form>
 </body>
 </html>

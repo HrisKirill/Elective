@@ -15,6 +15,12 @@ import static com.hristoforov.elective.constants.CRA_JSPFiles.*;
 import static com.hristoforov.elective.constants.CommonConstants.RECORDS_PER_PAGE;
 import static com.hristoforov.elective.constants.HttpAttributes.*;
 
+/**
+ * DoPostForUserAndTeacherTables to get rid of code duplication
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public class DoPostForUserAndTeacherTables {
 
     public static void doPostForTables(UserDao userDao, CourseDao courseDao,
@@ -46,10 +52,10 @@ public class DoPostForUserAndTeacherTables {
 
         if (req.getParameter(PREVIOUS) != null) {
             page = Integer.parseInt(req.getParameter(PREVIOUS));
-            Pagination.choosingPageForUserAndTeacherTable(courseDao, session, req, resp, page, user, address);
+            choosingPage(courseDao, session, resp, page, user, address);
         } else if (req.getParameter(NEXT) != null) {
             page = Integer.parseInt(req.getParameter(NEXT));
-            Pagination.choosingPageForUserAndTeacherTable(courseDao, session, req, resp, page, user, address);
+            choosingPage(courseDao, session, resp, page, user, address);
         }
 
         if (address.equals(TABLE_OF_COURSES_FOR_TEACHER_SERVLET) && req.getParameter(SHOW_STUDENTS) != null) {
@@ -62,4 +68,22 @@ public class DoPostForUserAndTeacherTables {
             resp.sendRedirect(USERS_TABLES_FOR_TEACHER_SERVLET);
         }
     }
+
+    private static void choosingPage(CourseDao courseDao, HttpSession session, HttpServletResponse resp,
+                                     int page, User user, String dispatcherPage) throws IOException {
+
+        if (session.getAttribute(SELECT_WAY_FOR_PAGINATION) != null) {
+            session.setAttribute(COURSE_MAP, SortAndSelect.selectTableBySomeValue(courseDao, user.getId(),
+                    String.valueOf(session.getAttribute(SELECT_WAY_FOR_PAGINATION)),
+                    (page - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE));
+
+        } else {
+            session.setAttribute(COURSE_MAP, courseDao.findAllCoursesByUserIdWithOffset
+                    (user.getId(), (page - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE));
+        }
+
+        session.setAttribute(CURRENT_PAGE, page);
+        resp.sendRedirect(dispatcherPage);
+    }
+
 }

@@ -8,7 +8,7 @@ import com.hristoforov.elective.entities.enums.Status;
 import com.hristoforov.elective.entities.user.User;
 import com.hristoforov.elective.exceptions.IncorrectDataFormatException;
 import com.hristoforov.elective.services.validation.ValidationService;
-import com.hristoforov.elective.utils.PasswordHashingUtil;
+import com.hristoforov.elective.services.passwodHashing.PasswordHashingService;
 import com.hristoforov.elective.utils.VerifyRecaptcha;
 
 import javax.servlet.*;
@@ -23,6 +23,12 @@ import static com.hristoforov.elective.constants.CommonConstants.SHA_256_ALGORIT
 import static com.hristoforov.elective.constants.ErrorMessage.*;
 import static com.hristoforov.elective.constants.HttpAttributes.*;
 
+/**
+ * ValidationFiltersForUser to validate user data
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 @WebFilter(filterName = "ValidationFilterForUser", urlPatterns = {REGISTRATION_SERVLET, TEACHER_REGISTRATION_SERVLET})
 public class ValidationFiltersForUser implements Filter {
 
@@ -131,7 +137,7 @@ public class ValidationFiltersForUser implements Filter {
             if (errorCounter == 0) {
                 User user = new User.Builder()
                         .login(login)
-                        .password(PasswordHashingUtil.encode(password, SHA_256_ALGORITHM))
+                        .password(PasswordHashingService.encode(password, SHA_256_ALGORITHM))
                         .email(email)
                         .firstName(firstName)
                         .lastName(lastName)
