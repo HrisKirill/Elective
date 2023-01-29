@@ -50,19 +50,8 @@
                         <td data-label="<fmt:message key="course.startDate"/>">${entry.getKey().getStartDate()}</td>
                         <td data-label="<fmt:message key="course.endDate"/>">${entry.getKey().getEndDate()}</td>
                         <td>
-                            <c:choose>
-                                <c:when test="${currentDate.compareTo(entry.getKey().getEndDate()) == 0 ||
-                    currentDate.compareTo(entry.getKey().getEndDate()) > 0}">
-                                    <button id="showStudents" name="showStudents" value="${entry.getKey().getId()}">
-                                        <fmt:message
-                                                key="show"/></button>
-                                </c:when>
-                                <c:otherwise>
-                                    <button id="showStudents" name="showStudents"
-                                            value="${entry.getKey().getId()}" disabled><fmt:message
-                                            key="show"/></button>
-                                </c:otherwise>
-                            </c:choose>
+                            <button id="showStudents" name="showStudents" value="${entry.getKey().getId()}">
+                                <fmt:message key="show"/></button>
                         </td>
                     </tr>
 

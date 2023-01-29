@@ -7,6 +7,7 @@ import com.hristoforov.elective.dao.interfaces.UserDao;
 import com.hristoforov.elective.entities.course.Course;
 import com.hristoforov.elective.entities.enums.Role;
 import com.hristoforov.elective.entities.user.User;
+import com.hristoforov.elective.services.emailSending.EmailSender;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,16 +18,20 @@ import java.io.IOException;
 import static com.hristoforov.elective.constants.CRAPaths.USER_INFO_PAGE_SERVLET;
 import static com.hristoforov.elective.constants.CRA_JSPFiles.USER_INFO_PAGE;
 import static com.hristoforov.elective.constants.CommonConstants.RECORDS_PER_PAGE;
+import static com.hristoforov.elective.constants.EmailConstants.EMAIL_SUBJECT;
+import static com.hristoforov.elective.constants.EmailConstants.MESSAGE_JOIN_COURSE;
 import static com.hristoforov.elective.constants.HttpAttributes.*;
 
 public class UserInfoAction implements Action {
     private int page;
     private final UserDao userDao;
     private final CourseDao courseDao;
+    private final EmailSender emailSender;
 
     public UserInfoAction(AppContext appContext) {
         userDao = appContext.getUserDao();
         courseDao = appContext.getCourseDao();
+        emailSender = appContext.getEmailSender();
     }
 
     @Override
@@ -67,6 +72,8 @@ public class UserInfoAction implements Action {
             if (course != null) {
                 userDao.createUserCourse(userDao.findByLogin(user.getLogin()), course, 0);
                 courseDao.incrementCountOfStudent(course.getId());
+                String content = String.format(MESSAGE_JOIN_COURSE, user.getFirstName(), course.getTitle());
+                new Thread(() -> emailSender.sendEmail(user.getEmail(), EMAIL_SUBJECT, content)).start();
                 page = 1;
                 session.setAttribute(NUMBER_OF_PAGES_FOR_USER_INFO,
                         (courseDao.coursesInWhichTheStudentDoesNotParticipateWithoutOffset

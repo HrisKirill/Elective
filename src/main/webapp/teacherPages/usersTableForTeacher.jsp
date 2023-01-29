@@ -45,8 +45,18 @@
                         <td data-label="<fmt:message key="user.email"/>">${userEntry.getKey().getEmail()}</td>
                         <td data-label="<fmt:message key="course.mark"/>">
                                 ${userEntry.getValue()}
-                            <button name="editMark" value="${userEntry.getKey().getId()}"><fmt:message
-                                    key="edit"/></button>
+
+                            <c:choose>
+                                <c:when test="${currentDate.compareTo(course.getEndDate()) <= 0 &&
+                                 currentDate.compareTo(course.getStartDate()) >= 0}">
+                                    <button name="editMark" value="${userEntry.getKey().getId()}"><fmt:message
+                                            key="edit"/></button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button name="editMark" value="${userEntry.getKey().getId()}" disabled><fmt:message
+                                            key="edit"/></button>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                     </tr>
                 </c:forEach>
