@@ -58,7 +58,6 @@ public class AddCourseAction implements Action {
                         course.getStartDate().toString());
                 emailSender.sendEmail(user.getEmail(), EMAIL_SUBJECT, content);
             }).start());
-
             response.sendRedirect(TABLE_OF_COURSES_SERVLET);
         } else {
             response.sendRedirect(ADD_COURSE_SERVLET);
