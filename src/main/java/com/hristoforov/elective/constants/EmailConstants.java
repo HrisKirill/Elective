@@ -32,7 +32,7 @@ public final class EmailConstants {
 
     public static final String MESSAGE_ADD_COURSE = HELLO +
             "We hasten to inform you, we have a new course \"%s\", which will start on %s" +
-            ",we look forward to seeing you.<br>" +
+            ", we look forward to seeing you.<br>" +
             ENTER +
             SIGNATURE;
 

@@ -42,7 +42,7 @@ public class EditMarkAction implements Action {
         userDao.updateUserCourse(user, course, mark);
 
         String content = String.format(MESSAGE_RATE_STUDENT, user.getFirstName(), mark, course.getTitle());
-        new Thread(() -> emailSender.sendEmail(user.getEmail(), EMAIL_SUBJECT, content));
+        new Thread(() -> emailSender.sendEmail(user.getEmail(), EMAIL_SUBJECT, content)).start();
         session.setAttribute(USER_MAP,
                 userDao.findAllStudentsByCourseId(((Course) session.getAttribute(USERS_COURSE_TO_EDIT)).getId()));
         response.sendRedirect(USERS_TABLES_FOR_TEACHER_SERVLET);
