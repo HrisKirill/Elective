@@ -1,7 +1,5 @@
 package com.hristoforov.elective.utils;
 
-import com.hristoforov.elective.Main;
-import com.hristoforov.elective.exceptions.DataBaseInteractionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

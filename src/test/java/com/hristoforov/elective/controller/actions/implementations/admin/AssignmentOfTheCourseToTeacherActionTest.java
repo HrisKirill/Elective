@@ -3,6 +3,7 @@ package com.hristoforov.elective.controller.actions.implementations.admin;
 import com.hristoforov.elective.controller.context.AppContext;
 import com.hristoforov.elective.dao.interfaces.CourseDao;
 import com.hristoforov.elective.dao.interfaces.UserDao;
+import com.hristoforov.elective.services.emailSending.EmailSender;
 import org.junit.jupiter.api.Test;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static com.hristoforov.elective.Constants.getTestCourse;
+import static com.hristoforov.elective.Constants.getTestUser;
 import static com.hristoforov.elective.constants.CRA_JSPFiles.ASSIGMENT_OF_THE_COURSE_TO_TEACHER_PAGE;
 import static com.hristoforov.elective.constants.HttpAttributes.EDIT_COURSE_FOR_TEACHER;
 import static com.hristoforov.elective.constants.HttpAttributes.ID_TEACHER_TO_EDIT;
@@ -26,6 +29,7 @@ class AssignmentOfTheCourseToTeacherActionTest {
     private final RequestDispatcher rd = mock(RequestDispatcher.class);
     private final UserDao userDao = mock(UserDao.class);
     private final CourseDao courseDao = mock(CourseDao.class);
+    private final EmailSender emailSender = mock(EmailSender.class);
 
     @Test
     void testExecuteDoGet() throws ServletException, IOException {
@@ -42,6 +46,9 @@ class AssignmentOfTheCourseToTeacherActionTest {
         when(session.getAttribute(ID_TEACHER_TO_EDIT)).thenReturn(String.valueOf(1));
         when(appContext.getUserDao()).thenReturn(userDao);
         when(appContext.getCourseDao()).thenReturn(courseDao);
+        when(appContext.getEmailSender()).thenReturn(emailSender);
+        when(userDao.findById(getTestUser().getId())).thenReturn(getTestUser());
+        when(courseDao.findById(getTestCourse().getId())).thenReturn(getTestCourse());
         new AssignmentOfTheCourseToTeacherAction(appContext).executeDoPost(request, response);
     }
 }

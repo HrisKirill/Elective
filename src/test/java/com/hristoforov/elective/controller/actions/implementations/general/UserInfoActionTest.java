@@ -5,6 +5,7 @@ import com.hristoforov.elective.dao.interfaces.CourseDao;
 import com.hristoforov.elective.dao.interfaces.UserDao;
 import com.hristoforov.elective.entities.course.Course;
 import com.hristoforov.elective.entities.user.User;
+import com.hristoforov.elective.services.emailSending.EmailSender;
 import org.junit.jupiter.api.Test;
 
 import javax.servlet.RequestDispatcher;
@@ -31,12 +32,14 @@ class UserInfoActionTest {
     private final RequestDispatcher rd = mock(RequestDispatcher.class);
     private final UserDao userDao = mock(UserDao.class);
     private final CourseDao courseDao = mock(CourseDao.class);
+    private final EmailSender emailSender = mock(EmailSender.class);
 
     @Test
     void testExecuteDoGetPageNull() throws ServletException, IOException {
         when(request.getSession()).thenReturn(session);
         when(appContext.getUserDao()).thenReturn(userDao);
         when(appContext.getCourseDao()).thenReturn(courseDao);
+        when(appContext.getEmailSender()).thenReturn(emailSender);
         when(session.getAttribute(CURRENT_USER)).thenReturn(new User.Builder()
                 .id(ID_VALUE)
                 .lastName(LAST_NAME_VALUE)
@@ -56,6 +59,7 @@ class UserInfoActionTest {
         when(request.getSession()).thenReturn(session);
         when(appContext.getUserDao()).thenReturn(userDao);
         when(appContext.getCourseDao()).thenReturn(courseDao);
+        when(appContext.getEmailSender()).thenReturn(emailSender);
         when(session.getAttribute(CURRENT_PAGE_FOR_USER_INFO)).thenReturn(2);
         when(session.getAttribute(CURRENT_USER)).thenReturn(getTestUser());
         when(request.getRequestDispatcher(USER_INFO_PAGE)).thenReturn(rd);
@@ -67,6 +71,7 @@ class UserInfoActionTest {
         when(request.getSession()).thenReturn(session);
         when(appContext.getCourseDao()).thenReturn(courseDao);
         when(appContext.getUserDao()).thenReturn(userDao);
+        when(appContext.getEmailSender()).thenReturn(emailSender);
         when(session.getAttribute(CURRENT_USER)).thenReturn(getTestUser());
         when(request.getParameter(JOIN_TO_COURSE)).thenReturn(String.valueOf(1));
         when(courseDao.findById(Long.valueOf(request.getParameter(JOIN_TO_COURSE)))).thenReturn(getTestCourse());

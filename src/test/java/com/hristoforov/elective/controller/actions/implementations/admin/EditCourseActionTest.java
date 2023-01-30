@@ -4,6 +4,7 @@ import com.hristoforov.elective.controller.context.AppContext;
 import com.hristoforov.elective.dao.interfaces.CourseDao;
 import com.hristoforov.elective.dao.interfaces.TopicDao;
 import com.hristoforov.elective.dao.interfaces.UserDao;
+import com.hristoforov.elective.services.emailSending.EmailSender;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
 import static com.hristoforov.elective.Constants.getTestCourse;
+import static com.hristoforov.elective.Constants.getTestUser;
 import static com.hristoforov.elective.constants.CRA_JSPFiles.ASSIGMENT_OF_THE_COURSE_TO_TEACHER_PAGE;
 import static com.hristoforov.elective.constants.CRA_JSPFiles.EDIT_COURSE_PAGE;
 import static com.hristoforov.elective.constants.HttpAttributes.*;
@@ -31,6 +34,8 @@ class EditCourseActionTest {
     private final RequestDispatcher rd = mock(RequestDispatcher.class);
     private final CourseDao courseDao = mock(CourseDao.class);
     private final TopicDao topicDao = mock(TopicDao.class);
+    private final UserDao userDao = mock(UserDao.class);
+    private  final EmailSender emailSender = mock(EmailSender.class);
 
     @Test
     void testExecuteDoGet() throws ServletException, IOException {
@@ -48,6 +53,10 @@ class EditCourseActionTest {
         when(appContext.getCourseDao()).thenReturn(courseDao);
         when(request.getParameter(TOPICS)).thenReturn(String.valueOf(1));
         when(appContext.getTopicDao()).thenReturn(topicDao);
+        when(appContext.getUserDao()).thenReturn(userDao);
+        when(appContext.getEmailSender()).thenReturn(emailSender);
+        when(courseDao.findByTitle(getTestCourse().getTitle())).thenReturn(getTestCourse());
+        when(userDao.findAllStudentsByCourseId(getTestCourse().getId())).thenReturn(Map.of(getTestUser(), 0));
         new EditCourseAction(appContext).executeDoPost(request, response);
     }
 

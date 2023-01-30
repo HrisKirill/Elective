@@ -1,6 +1,5 @@
 package com.hristoforov.elective.services.emailSending;
 
-import com.hristoforov.elective.Main;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -4,6 +4,7 @@ import com.hristoforov.elective.Constants;
 import com.hristoforov.elective.controller.context.AppContext;
 import com.hristoforov.elective.dao.interfaces.UserDao;
 import com.hristoforov.elective.entities.user.User;
+import com.hristoforov.elective.services.emailSending.EmailSender;
 import org.junit.jupiter.api.Test;
 
 import javax.servlet.RequestDispatcher;
@@ -29,6 +30,7 @@ class RegistrationActionTest {
     private final AppContext appContext = mock(AppContext.class);
     private final RequestDispatcher rd = mock(RequestDispatcher.class);
     private final UserDao userDao = mock(UserDao.class);
+    private final EmailSender emailSender = mock(EmailSender.class);
 
     @Test
     void testExecuteDoGet() throws ServletException, IOException {
@@ -42,6 +44,7 @@ class RegistrationActionTest {
     void testExecuteDoPost() throws ServletException, IOException {
         when(request.getSession()).thenReturn(session);
         when(appContext.getUserDao()).thenReturn(userDao);
+        when(appContext.getEmailSender()).thenReturn(emailSender);
         when(request.getRequestDispatcher(LOGIN_PAGE_SERVLET)).thenReturn(rd);
         when(session.getAttribute(CORRECT_USER)).thenReturn(new User.Builder()
                 .id(ID_VALUE)
