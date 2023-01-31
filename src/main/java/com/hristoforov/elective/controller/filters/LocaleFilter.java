@@ -29,7 +29,7 @@ public class LocaleFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String locale = httpRequest.getParameter(LOCALE);
-        if (isNotBlank(locale)) {
+        if (!isBlank(locale)) {
             httpRequest.getSession().setAttribute(LOCALE, locale);
             ((HttpServletResponse) response).sendRedirect(httpRequest.getHeader(REFERER));
         } else {
@@ -45,7 +45,4 @@ public class LocaleFilter implements Filter {
         return locale == null || locale.isEmpty();
     }
 
-    private boolean isNotBlank(String locale) {
-        return !isBlank(locale);
-    }
 }

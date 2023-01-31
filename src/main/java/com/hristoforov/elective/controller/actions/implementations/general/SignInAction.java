@@ -5,7 +5,7 @@ import com.hristoforov.elective.controller.context.AppContext;
 import com.hristoforov.elective.dao.interfaces.UserDao;
 import com.hristoforov.elective.entities.user.User;
 import com.hristoforov.elective.exceptions.AuthenticationException;
-import com.hristoforov.elective.services.SessionService;
+import com.hristoforov.elective.utils.SessionUtil;
 import com.hristoforov.elective.services.authentication.UserAuthenticator;
 
 import javax.servlet.ServletException;
@@ -33,7 +33,7 @@ public class SignInAction implements Action {
     @Override
     public void executeDoGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        SessionService.removeErrorFromUserSignUpPage(session);
+        SessionUtil.removeErrorFromUserSignUpPage(session);
 
         request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
     }

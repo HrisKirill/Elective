@@ -3,7 +3,7 @@ package com.hristoforov.elective.controller.actions.implementations.admin;
 import com.hristoforov.elective.controller.actions.Action;
 import com.hristoforov.elective.controller.context.AppContext;
 import com.hristoforov.elective.dao.interfaces.UserDao;
-import com.hristoforov.elective.services.SessionService;
+import com.hristoforov.elective.utils.SessionUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +30,7 @@ public class TableOfTeachersForAdminAction implements Action {
     @Override
     public void executeDoGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        SessionService.removeErrorFromUserSignUpPage(session);
+        SessionUtil.removeErrorFromUserSignUpPage(session);
 
         if (session.getAttribute(CURRENT_PAGE) != null) {
             page = (int) session.getAttribute(CURRENT_PAGE);

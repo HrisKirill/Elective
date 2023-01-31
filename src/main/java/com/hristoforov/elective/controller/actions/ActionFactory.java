@@ -5,6 +5,7 @@ import com.hristoforov.elective.controller.actions.implementations.general.*;
 import com.hristoforov.elective.controller.actions.implementations.student.CoursesTableForStudentAction;
 import com.hristoforov.elective.controller.actions.implementations.teacher.CoursesTableForTeacherAction;
 import com.hristoforov.elective.controller.actions.implementations.teacher.EditMarkAction;
+import com.hristoforov.elective.controller.actions.implementations.teacher.JournalToPdfAction;
 import com.hristoforov.elective.controller.actions.implementations.teacher.StudentsTableForTeacherAction;
 import com.hristoforov.elective.controller.context.AppContext;
 
@@ -41,6 +42,7 @@ public final class ActionFactory {
         ACTION_MAP.put(CHANGE_STATUS_SERVLET, new TableOfStudentsToChangeStatusAction(CONTEXT));
         ACTION_MAP.put(TABLE_OF_TEACHERS_SERVLET, new TableOfTeachersForAdminAction(CONTEXT));
         ACTION_MAP.put(ERROR, new ErrorAction());
+        ACTION_MAP.put(TEACHER_JOURNAL_PDF, new JournalToPdfAction(CONTEXT));
     }
 
 

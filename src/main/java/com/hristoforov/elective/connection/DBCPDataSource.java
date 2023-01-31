@@ -24,7 +24,7 @@ import static com.hristoforov.elective.constants.ConnectionConstants.*;
  * @version 1.0
  */
 public abstract class DBCPDataSource {
-    private static final Logger LOGGER = LogManager.getLogger(AuthorizationFilter.class);
+    private static final Logger LOGGER = LogManager.getLogger(DBCPDataSource.class);
     private static DataSource dataSource;
 
     private static BasicDataSource getBDSConfig() {

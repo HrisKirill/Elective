@@ -25,6 +25,7 @@ public final class CRAPaths {
     public static final String CHANGE_STATUS_SERVLET = "/Admin/ChangeStatus";
     public static final String LOGOUT_SERVLET = "/Logout";
     public static final String ERROR = "/Error";
+    public static final String TEACHER_JOURNAL_PDF = "/Teacher/Journal";
 
     public static final String START_PATH_FOR_ADMIN = "/Admin";
     public static final String START_PATH_FOR_TEACHER = "/Teacher";

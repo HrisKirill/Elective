@@ -6,6 +6,7 @@ import com.hristoforov.elective.dao.interfaces.CourseDao;
 import com.hristoforov.elective.dao.interfaces.TopicDao;
 import com.hristoforov.elective.dao.interfaces.UserDao;
 import com.hristoforov.elective.services.emailSending.EmailSender;
+import com.hristoforov.elective.services.pdfConverter.ConvertToPdf;
 import com.hristoforov.elective.utils.WorkWithFile;
 import lombok.Getter;
 
@@ -26,6 +27,7 @@ public class AppContext {
     private final CourseDao courseDao;
     private final TopicDao topicDao;
     private final EmailSender emailSender;
+    private final ConvertToPdf convertToPdf;
 
 
     private AppContext() {
@@ -36,6 +38,7 @@ public class AppContext {
         courseDao = daoFactory.getCourseDao();
         topicDao = daoFactory.getTopicDao();
         emailSender = new EmailSender(WorkWithFile.readPropertiesFromSource(CONNECTION_FILE));
+        convertToPdf = new ConvertToPdf();
     }
 
     public static void createAppContext() {

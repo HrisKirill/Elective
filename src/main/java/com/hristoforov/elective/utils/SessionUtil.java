@@ -1,4 +1,4 @@
-package com.hristoforov.elective.services;
+package com.hristoforov.elective.utils;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +11,7 @@ import static com.hristoforov.elective.constants.HttpAttributes.INCORRECT_USER_L
  * @author Khrystoforov Kyrylo
  * @version 1.0
  */
-public class SessionService {
+public class SessionUtil {
 
     public static void removeErrorFromUserSignUpPage(HttpSession session) {
         session.removeAttribute(LOGIN_SPELLING_ERROR);

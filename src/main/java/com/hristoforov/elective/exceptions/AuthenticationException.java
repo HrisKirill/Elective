@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
  * @version 1.0
  */
 public class AuthenticationException extends RuntimeException {
-    private static final Logger LOGGER = LogManager.getLogger(DataBaseInteractionException.class);
+    private static final Logger LOGGER = LogManager.getLogger(AuthenticationException.class);
 
 
     private final Type type;

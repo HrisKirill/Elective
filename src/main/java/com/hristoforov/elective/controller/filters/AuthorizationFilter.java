@@ -44,16 +44,17 @@ public class AuthorizationFilter implements Filter {
         String contextPath = httpServletRequest.getContextPath();
         uri = uri.substring(contextPath.length());
         if (currentUser == null && !(uri.startsWith(LOGIN_PAGE_SERVLET) || uri.startsWith(REGISTRATION_SERVLET))) {
+            LOGGER.info("access is denied");
             httpServletResponse.sendRedirect(LOGIN_PAGE_SERVLET);
-        } else if (currentUser.getRole().name().equalsIgnoreCase(Role.SYSADMIN.name())
+        } else if (currentUser != null && currentUser.getRole().name().equalsIgnoreCase(Role.SYSADMIN.name())
                 && !(uri.startsWith(START_PATH_FOR_ADMIN) || uri.startsWith(USER_INFO_PAGE_SERVLET))) {
             LOGGER.info("access is denied");
             httpServletResponse.sendRedirect(USER_INFO_PAGE_SERVLET);
-        } else if (currentUser.getRole().name().equalsIgnoreCase(Role.TEACHER.name())
+        } else if (currentUser != null && currentUser.getRole().name().equalsIgnoreCase(Role.TEACHER.name())
                 && !(uri.startsWith(START_PATH_FOR_TEACHER) || uri.startsWith(USER_INFO_PAGE_SERVLET))) {
             LOGGER.info("access is denied");
             httpServletResponse.sendRedirect(USER_INFO_PAGE_SERVLET);
-        } else if (currentUser.getRole().name().equalsIgnoreCase(Role.STUDENT.name())
+        } else if (currentUser != null && currentUser.getRole().name().equalsIgnoreCase(Role.STUDENT.name())
                 && !(uri.startsWith(START_PATH_FOR_STUDENT) || uri.startsWith(USER_INFO_PAGE_SERVLET))) {
             LOGGER.info("access is denied");
             httpServletResponse.sendRedirect(USER_INFO_PAGE_SERVLET);
