@@ -46,6 +46,9 @@
                     <th scope="col"><fmt:message key="course.mark"/></th>
                 </tr>
                 </thead>
+                <p style="text-align: right">
+                    <a href="${pageContext.request.contextPath}/Student/Certificate">Download certificate</a>
+                </p>
                 <tbody>
                 <c:forEach var="entry" items="${courseMap.entrySet()}">
                     <tr>

@@ -34,7 +34,7 @@
                 </select>
 
                 <button name="ok"><fmt:message key="accept"/></button>
-                <a href="${pageContext.request.contextPath}/Teacher/Journal">Download journal</a>
+
                 <tr>
                     <th scope="col"><fmt:message key="course.title"/></th>
                     <th scope="col"><fmt:message key="course.duration"/></th>
@@ -43,6 +43,11 @@
                     <th scope="col"><fmt:message key="showStudents"/></th>
                 </tr>
                 </thead>
+                <p style="text-align: right"><a href="${pageContext.request.contextPath}/Teacher/Journal">
+                    Download journal
+                </a>
+                </p>
+
                 <tbody>
                 <c:forEach var="entry" items="${courseMap.entrySet()}">
                     <tr>

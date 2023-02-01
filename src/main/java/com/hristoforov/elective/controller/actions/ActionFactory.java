@@ -2,6 +2,7 @@ package com.hristoforov.elective.controller.actions;
 
 import com.hristoforov.elective.controller.actions.implementations.admin.*;
 import com.hristoforov.elective.controller.actions.implementations.general.*;
+import com.hristoforov.elective.controller.actions.implementations.student.CertificateToPdfAction;
 import com.hristoforov.elective.controller.actions.implementations.student.CoursesTableForStudentAction;
 import com.hristoforov.elective.controller.actions.implementations.teacher.CoursesTableForTeacherAction;
 import com.hristoforov.elective.controller.actions.implementations.teacher.EditMarkAction;
@@ -43,6 +44,8 @@ public final class ActionFactory {
         ACTION_MAP.put(TABLE_OF_TEACHERS_SERVLET, new TableOfTeachersForAdminAction(CONTEXT));
         ACTION_MAP.put(ERROR, new ErrorAction());
         ACTION_MAP.put(TEACHER_JOURNAL_PDF, new JournalToPdfAction(CONTEXT));
+        ACTION_MAP.put(STUDENT_CERTIFICATE_PDF, new CertificateToPdfAction(CONTEXT));
+        ACTION_MAP.put(COURSES_PDF, new CoursesToPdfAction(CONTEXT));
     }
 
 

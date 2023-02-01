@@ -10,6 +10,7 @@ public final class CRAPaths {
     public static final String REGISTRATION_SERVLET = "/Registration";
     public static final String LOGIN_PAGE_SERVLET = "/Login";
     public static final String TABLE_FOR_STUDENT_SERVLET = "/Student/CourseListForStudent";
+    public static final String STUDENT_CERTIFICATE_PDF = "/Student/Certificate";
     public static final String TABLE_OF_COURSES_FOR_TEACHER_SERVLET = "/Teacher/TableOfCoursesForTeacher";
     public static final String USER_INFO_PAGE_SERVLET = "/UserInfo";
     public static final String USERS_TABLES_FOR_TEACHER_SERVLET = "/Teacher/UsersTableForTeacher";
@@ -23,6 +24,7 @@ public final class CRAPaths {
     public static final String ADD_COURSE_SERVLET = "/Admin/AddCourse";
     public static final String ADD_TOPIC_SERVLET = "/Admin/AddTopic";
     public static final String CHANGE_STATUS_SERVLET = "/Admin/ChangeStatus";
+    public static final String COURSES_PDF = "/Admin/CoursesPdf";
     public static final String LOGOUT_SERVLET = "/Logout";
     public static final String ERROR = "/Error";
     public static final String TEACHER_JOURNAL_PDF = "/Teacher/Journal";
