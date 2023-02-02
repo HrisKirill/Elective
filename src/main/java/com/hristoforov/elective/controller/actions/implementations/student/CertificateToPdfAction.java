@@ -39,7 +39,8 @@ public class CertificateToPdfAction implements Action {
                     courseDao.findAllCoursesByUserId(currentStudent.getId()));
             response.setContentType("application/pdf");
             response.setContentLength(journalPdf.size());
-            response.setHeader("Content-Disposition", "attachment; filename=\"Certificate.pdf\"");
+            response.setHeader("Content-Disposition", "attachment; filename=\""
+                    + currentStudent.getLastName() + "_Certificate.pdf\"");
             try (OutputStream outputStream = response.getOutputStream()) {
                 journalPdf.writeTo(outputStream);
                 outputStream.flush();

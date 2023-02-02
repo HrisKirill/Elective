@@ -16,7 +16,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
-
+/**
+ * ConvertToPdf class with methods for creating information in pdf format
+ *
+ * @author Khrystoforov Kyrylo
+ * @version 1.0
+ */
 public class ConvertToPdf {
     private static final Logger LOGGER = LogManager.getLogger(ConvertToPdf.class);
 
@@ -24,6 +29,13 @@ public class ConvertToPdf {
     private final String[] headersForStudentTablePdf = new String[]{"Title", "Start Date", "End Date", "Mark"};
     private final String[] headersForAdminTablePdf = new String[]{"Title", "Duration", "Start Date", "End Date"};
 
+    /**
+     * Method to create journal for teacher in pdf format
+     *
+     * @param courses set of courses
+     * @param userDao userDao
+     * @return output stream with information in pdf format
+     */
     public ByteArrayOutputStream createTeacherJournalPdf(Set<Course> courses, UserDao userDao) {
         Document document = new Document();
         ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -41,6 +53,12 @@ public class ConvertToPdf {
         }
     }
 
+    /**
+     * Method to create certificate for user with grades for courses
+     *
+     * @param courses map with courses and marks
+     * @return output stream with information in pdf format
+     */
     public ByteArrayOutputStream createStudentCertificatePdf(Map<Course, Integer> courses) {
         Document document = new Document();
         ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -58,6 +76,12 @@ public class ConvertToPdf {
         }
     }
 
+    /**
+     * Method to create table with all courses for admin
+     *
+     * @param courses list of courses
+     * @return output stream with information in pdf format
+     */
     public ByteArrayOutputStream createCoursesListForAdminPdf(List<Course> courses) {
         Document document = new Document();
         ByteArrayOutputStream output = new ByteArrayOutputStream();
