@@ -76,6 +76,9 @@ public class TableOfCoursesForAdminAction implements Action {
             response.sendRedirect(EDIT_COURSE_SERVLET);
         } else if (request.getParameter(DELETE_COURSE_ID) != null) {
             courseDao.remove(Long.valueOf(request.getParameter(DELETE_COURSE_ID)));
+            page = 1;
+            session.setAttribute(CURRENT_PAGE, page);
+            session.setAttribute(SORT_WAY_FOR_PAGINATION, request.getParameter(SORT));
             response.sendRedirect(TABLE_OF_COURSES_SERVLET);
         }
 

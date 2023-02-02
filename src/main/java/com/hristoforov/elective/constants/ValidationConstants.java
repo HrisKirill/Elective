@@ -11,5 +11,5 @@ public class ValidationConstants {
     public static final String PASSWORD_REGEX = "(?=.*[a-zа-я])(?=.*[A-ZА-Я])(?=.*\\d)[a-zа-яA-ZА-Я\\d]{8,}";
     public static final String EMAIL_REGEX = "[a-z0-9]+@[a-z0-9.-]+\\.[a-z]{2,4}";
     public static final String NAME_REGEX = "[A-Za-zА-Яа-я]+";
-    public static final String TITLE_REGEX = "[A-Za-zА-Яа-я]+[+-_#?!.]*";
+    public static final String TITLE_REGEX = "^[^\\s].*[^\\s]$";
 }

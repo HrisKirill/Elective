@@ -11,5 +11,5 @@ public class ConnectionConstants {
     public static final String URL = "url";
     public static final String USER = "user";
     public static final String PASSWORD = "password";
-    public static final String CONNECTION_FILE = "database.properties";
+    public static final String CONNECTION_FILE = "application.properties";
 }

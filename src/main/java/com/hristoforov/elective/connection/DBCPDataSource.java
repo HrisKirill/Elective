@@ -29,21 +29,15 @@ public abstract class DBCPDataSource {
 
     private static BasicDataSource getBDSConfig() {
         BasicDataSource dataSourceForConnection = new BasicDataSource();
-        try (InputStream inputStream = Objects.requireNonNull(Thread.currentThread().
-                getContextClassLoader().getResourceAsStream(CONNECTION_FILE))) {
-            Properties properties = new Properties();
-            properties.load(inputStream);
-            Class.forName(properties.getProperty(DRIVER));
-            dataSourceForConnection.setUrl(properties.getProperty(URL));
-            dataSourceForConnection.setUsername(properties.getProperty(USER));
-            dataSourceForConnection.setPassword(properties.getProperty(PASSWORD));
-            dataSourceForConnection.setMinIdle(5);
-            dataSourceForConnection.setMaxIdle(1000);
-            dataSourceForConnection.setMaxOpenPreparedStatements(100);
-        } catch (ClassNotFoundException | IOException e) {
-            LOGGER.error(e);
-            throw new RuntimeException(e);
-        }
+        Properties properties = WorkWithFile.readPropertiesFromSource(CONNECTION_FILE);
+        dataSourceForConnection.setDriverClassName(properties.getProperty(DRIVER));
+        dataSourceForConnection.setUrl(properties.getProperty(URL));
+        dataSourceForConnection.setUsername(properties.getProperty(USER));
+        dataSourceForConnection.setPassword(properties.getProperty(PASSWORD));
+        dataSourceForConnection.setMinIdle(5);
+        dataSourceForConnection.setMaxIdle(1000);
+        dataSourceForConnection.setMaxOpenPreparedStatements(100);
+
         return dataSourceForConnection;
     }
 
@@ -81,6 +75,7 @@ public abstract class DBCPDataSource {
 
     /**
      * Obtains configured DataSource
+     *
      * @return singleton instance of BasicDataSource
      */
     public static synchronized DataSource getDataSource() {
