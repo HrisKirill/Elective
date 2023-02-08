@@ -36,14 +36,17 @@ public final class HttpAttributes {
     public static final String USER_TO_EDIT = "userToEdit";
     public static final String USERS_COURSE_TO_EDIT = "usersCourseToEdit";
     public static final String SHOW_STUDENTS = "showStudents";
+    public static final String COURSE_ID = "courseId";
     public static final String EDIT_MARK = "editMark";
     public static final String SELECT_WAY_FOR_PAGINATION = "selectWayForPagination";
     public static final String COURSE_MAP = "courseMap";
     public static final String COURSE = "course";
     public static final String USER_MAP = "userMap";
     public static final String NUMBER_OF_PAGES = "noOfPages";
+    public static final String NUMBER_OF_PAGES_STUDENTS_TABLE_FOR_TEACHER = "noOfPagesStudentsForTeacher";
     public static final String NUMBER_OF_PAGES_FOR_USER_INFO = "noOfPagesForUserInfo";
     public static final String CURRENT_PAGE = "currentPage";
+    public static final String CURRENT_PAGE_STUDENTS_TABLE_FOR_TEACHER = "currentPageStudentsForTeacher";
     public static final String CURRENT_PAGE_FOR_USER_INFO = "currentPageForUserInfo";
     public static final String JOIN_COURSE_LIST = "joinCourseList";
     public static final String LOCALE = "locale";

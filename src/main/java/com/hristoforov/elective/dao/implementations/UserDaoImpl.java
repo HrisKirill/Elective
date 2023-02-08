@@ -376,7 +376,39 @@ public class UserDaoImpl implements UserDao {
         }
 
         return list;
+    }
 
+    /**
+     * Find students by course id with offset
+     *
+     * @param courseId       - course id
+     * @param offset         - offset
+     * @param recordsPerPage - records on page
+     * @return list of students
+     * @throws DataBaseInteractionException
+     */
+    @Override
+    public Map<User, Integer> findAllStudentsByCourseIdWithOffset(Long courseId, int offset, int recordsPerPage) throws DataBaseInteractionException {
+        Map<User, Integer> map = new HashMap<>();
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement statement = conn.prepareStatement(WorkWithFile
+                     .readFromFile(FIND_ALL_USERS_BY_COURSE_ID_WITH_OFFSET))) {
+            statement.setLong(1, courseId);
+            statement.setInt(2, offset);
+            statement.setInt(3, recordsPerPage);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    if (resultSet.getString(USER_ROLE).equalsIgnoreCase(Role.STUDENT.name())) {
+                        map.put(createUserFromDb(resultSet),
+                                resultSet.getInt(MARK));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataBaseInteractionException(e);
+        }
+
+        return map;
     }
 
     private User createUserFromDb(ResultSet resultSet) throws SQLException {

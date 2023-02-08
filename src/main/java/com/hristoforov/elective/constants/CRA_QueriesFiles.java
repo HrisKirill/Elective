@@ -15,6 +15,7 @@ public final class CRA_QueriesFiles {
     public static final String FIND_USER_BY_LOGIN = "queries/userQueries/findUserByLogin.sql";
     public static final String FIND_USER_BY_EMAIL = "queries/userQueries/findUserByEmail.sql";
     public static final String FIND_ALL_USERS_BY_COURSE_ID = "queries/userQueries/findAllUsersByCourseId.sql";
+    public static final String FIND_ALL_USERS_BY_COURSE_ID_WITH_OFFSET = "queries/userQueries/withOffset/findAllUsersByCourseIdWithOffset.sql";
     public static final String FIND_ALL_TEACHERS_WITH_OFFSET = "queries/userQueries/withOffset/findAllTeachersWithOffset.sql";
     public static final String FIND_ALL_STUDENTS_WITH_OFFSET = "queries/userQueries/withOffset/findAllStudentsWithOffset.sql";
 

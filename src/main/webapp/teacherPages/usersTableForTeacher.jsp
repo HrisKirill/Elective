@@ -61,6 +61,41 @@
                     </tr>
                 </c:forEach>
                 </tbody>
+                <table>
+                    <c:choose>
+                        <c:when test="${currentPageStudentsForTeacher != 1}">
+                            <td>
+                                <button name="previous" value="${currentPageStudentsForTeacher - 1}"><fmt:message
+                                        key="page.previous"/></button>
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>
+                                <button disabled><fmt:message key="page.previous"/></button>
+                            </td>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:forEach begin="1" end="${noOfPagesStudentsForTeacher}" var="i">
+                        <c:if test="${currentPageStudentsForTeacher eq i}">
+                            <td>${i} of ${noOfPagesStudentsForTeacher}</td>
+                        </c:if>
+                    </c:forEach>
+
+                    <c:choose>
+                        <c:when test="${currentPageStudentsForTeacher lt noOfPagesStudentsForTeacher}">
+                            <td>
+                                <button name="next" value="${currentPageStudentsForTeacher + 1}"><fmt:message key="page.next"/></button>
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>
+                                <button disabled><fmt:message key="page.next"/></button>
+                            </td>
+                        </c:otherwise>
+                    </c:choose>
+                </table>
+            </table>
             </table>
         </c:when>
         <c:otherwise>

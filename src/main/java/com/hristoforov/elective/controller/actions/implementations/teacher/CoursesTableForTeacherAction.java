@@ -32,6 +32,7 @@ public class CoursesTableForTeacherAction implements Action {
     @Override
     public void executeDoGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.removeAttribute(CURRENT_PAGE_STUDENTS_TABLE_FOR_TEACHER);
         User user = userDao.findByLogin(((User) session.getAttribute(CURRENT_USER)).getLogin());
 
         if (session.getAttribute(CURRENT_PAGE) != null) {

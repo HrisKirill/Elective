@@ -86,4 +86,15 @@ public interface UserDao extends Dao<User> {
      * @throws DataBaseInteractionException
      */
     List<User> findTeachersOrStudentsOrAllWithOffset(int offset, int recordsPerPage, String filePath) throws DataBaseInteractionException;
+
+    /**
+     * Find students by course id with offset
+     *
+     * @param courseId       - course id
+     * @param offset         - offset
+     * @param recordsPerPage - records on page
+     * @return map of user and user's mark
+     * @throws DataBaseInteractionException
+     */
+    Map<User, Integer> findAllStudentsByCourseIdWithOffset(Long courseId, int offset, int recordsPerPage) throws DataBaseInteractionException;
 }

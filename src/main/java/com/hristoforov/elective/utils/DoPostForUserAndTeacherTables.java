@@ -62,8 +62,7 @@ public class DoPostForUserAndTeacherTables {
             session.setAttribute(COURSE,
                     courseDao.findById(Long.valueOf(req.getParameter(SHOW_STUDENTS))));
 
-            session.setAttribute(USER_MAP,
-                    userDao.findAllStudentsByCourseId(Long.valueOf(req.getParameter(SHOW_STUDENTS))));
+            session.setAttribute(COURSE_ID, Long.valueOf(req.getParameter(SHOW_STUDENTS)));
 
             resp.sendRedirect(USERS_TABLES_FOR_TEACHER_SERVLET);
         }
