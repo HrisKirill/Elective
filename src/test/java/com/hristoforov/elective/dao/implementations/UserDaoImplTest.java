@@ -307,6 +307,27 @@ class UserDaoImplTest {
     }
 
     @Test
+    void testFindAllStudentsByCourseIdWithOffset() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserDao userDao = new UserDaoImpl(dataSource);
+        try (PreparedStatement preparedStatement = prepareMocks(dataSource)) {
+            ResultSet resultSet = mock(ResultSet.class);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            prepareResultSet(resultSet);
+            Map<User, Integer> users = userDao.findAllStudentsByCourseIdWithOffset(ID_VALUE, ZERO, RECORDS_PER_PAGE);
+            assertEquals(1, users.size());
+        }
+    }
+
+    @Test
+    void testSqlExceptionFindAllStudentsByCourseIdWithOffset() throws SQLException {
+        DataSource dataSource = mock(DataSource.class);
+        UserDao userDao = new UserDaoImpl(dataSource);
+        when(dataSource.getConnection()).thenThrow(new SQLException());
+        assertThrows(DataBaseInteractionException.class, () -> userDao.findAllStudentsByCourseIdWithOffset(ID_VALUE, ZERO, RECORDS_PER_PAGE));
+    }
+
+    @Test
     void testFindAllTeachers() throws SQLException {
         DataSource dataSource = mock(DataSource.class);
         UserDao userDao = new UserDaoImpl(dataSource);

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
 import static com.hristoforov.elective.Constants.getTestCourse;
 import static com.hristoforov.elective.Constants.getTestUser;
@@ -30,6 +31,11 @@ class StudentsTableForTeacherActionTest {
 
     @Test
     void testExecuteDoGet() throws ServletException, IOException {
+        when(request.getSession()).thenReturn(session);
+        when(session.getAttribute(CURRENT_PAGE_STUDENTS_TABLE_FOR_TEACHER)).thenReturn(1);
+        when(appContext.getUserDao()).thenReturn(userDao);
+        when(userDao.findAllStudentsByCourseId(1L)).thenReturn(Map.of(getTestUser(),12));
+        when(userDao.findAllStudentsByCourseIdWithOffset(1L,0,3)).thenReturn(Map.of(getTestUser(),12));
         when(request.getRequestDispatcher(USERS_TABLE_FOR_TEACHER_PAGE)).thenReturn(rd);
         new StudentsTableForTeacherAction(appContext).executeDoGet(request, response);
     }

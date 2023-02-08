@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ValidationServiceTest {
     private final static String WRONG_VALUE_FOR_TEST = "-123";
+    private final static String WRONG_VALUE_FOR_TITLE = " -123 ";
 
     @Test
     void checkRightValidationTest() throws IncorrectDataFormatException {
@@ -33,7 +34,7 @@ class ValidationServiceTest {
         assertThrows(IncorrectDataFormatException.class, () -> ValidationService.emailCheck(WRONG_VALUE_FOR_TEST));
         assertThrows(IncorrectDataFormatException.class, () -> ValidationService.lastNameCheck(WRONG_VALUE_FOR_TEST));
         assertThrows(IncorrectDataFormatException.class, () -> ValidationService.firstNameCheck(WRONG_VALUE_FOR_TEST));
-        assertThrows(IncorrectDataFormatException.class, () -> ValidationService.titleCheck(WRONG_VALUE_FOR_TEST));
+        assertThrows(IncorrectDataFormatException.class, () -> ValidationService.titleCheck(WRONG_VALUE_FOR_TITLE));
         assertThrows(IncorrectDataFormatException.class, () -> ValidationService.durationCheck(Integer.parseInt(WRONG_VALUE_FOR_TEST)));
         assertThrows(IncorrectDataFormatException.class,
                 () -> ValidationService.passwordEqualityCheck("", WRONG_VALUE_FOR_TEST));
