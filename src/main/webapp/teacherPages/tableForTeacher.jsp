@@ -21,20 +21,21 @@
 <a href="${pageContext.request.contextPath}/UserInfo"><fmt:message key="go.back"/></a>
 <p style="text-align:right"><a href="${pageContext.request.contextPath}/Logout"> <fmt:message key="sign.out"/> </a></p>
 <form action="${pageContext.request.contextPath}/Teacher/TableOfCoursesForTeacher" method="POST">
+
+    <select name="select">
+        <option value="all"><fmt:message key="selection.all"/></option>
+        <option value="doNotStart"><fmt:message key="listOfCourses.doNotStart"/></option>
+        <option value="stillOngoing"><fmt:message key="listOfCourses.stillOngoing"/></option>
+        <option value="completedCourses"><fmt:message key="listOfCourses.completedCourses"/></option>
+    </select>
+
+    <button name="ok"><fmt:message key="accept"/></button>
+
     <c:choose>
         <c:when test="${courseMap.size() > 0}">
             <table>
                 <tags:caption value="courses"/>
                 <thead>
-                <select name="select">
-                    <option value="all"><fmt:message key="selection.all"/></option>
-                    <option value="doNotStart"><fmt:message key="listOfCourses.doNotStart"/></option>
-                    <option value="stillOngoing"><fmt:message key="listOfCourses.stillOngoing"/></option>
-                    <option value="completedCourses"><fmt:message key="listOfCourses.completedCourses"/></option>
-                </select>
-
-                <button name="ok"><fmt:message key="accept"/></button>
-
                 <tr>
                     <th scope="col"><fmt:message key="course.title"/></th>
                     <th scope="col"><fmt:message key="course.duration"/></th>
